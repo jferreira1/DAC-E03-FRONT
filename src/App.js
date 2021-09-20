@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import Main from "./components/Main";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import VolumeInclusao from "./components/VolumeInclusao";
+import VolumeDetalhe from "./components/VolumeDetalhe";
+import ArtigoInclusao from "./components/ArtigoInclusao";
+import ArtigoDetalhe from "./components/ArtigoDetalhe";
+import AutorInclusao from "./components/AutorInclusao";
+import AutorDetalhe from "./components/AutorDetalhe";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App container my-2">
+        <Switch>
+          <Route path="/" exact>
+            <Main />
+          </Route>
+          <Route path="/volume/adicionar">
+            <VolumeInclusao />
+          </Route>
+          <Route path="/volume/:volumeId" exact>
+            <VolumeDetalhe />
+          </Route>
+          <Route path="/volume/:volumeId/artigo/adicionar">
+            <ArtigoInclusao />
+          </Route>
+          <Route path="/volume/:volumeId/artigo/:artigoId" exact>
+            <ArtigoDetalhe />
+          </Route>
+          <Route path="/volume/:volumeId/artigo/:artigoId/autor/adicionar">
+            <AutorInclusao />
+          </Route>
+          <Route path="/volume/:volumeId/artigo/:artigoId/autor/:autorId" exact>
+            <AutorDetalhe />
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
